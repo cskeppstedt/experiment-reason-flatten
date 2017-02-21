@@ -15,7 +15,7 @@ let rec flatten input =>
 
 
 /** Utility functions to print lists, and nested lists.  */
-let rec print_list lst => {
+let print_list lst => {
   print_string "[ ";
   print_string (String.concat " " (List.map string_of_int lst));
   print_endline " ]"
