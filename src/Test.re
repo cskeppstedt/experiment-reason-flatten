@@ -21,7 +21,7 @@ let rec print_list lst => {
   print_endline " ]"
 };
 
-let rec print_nested input => {
+let print_nested input => {
   let rec print_elements elements =>
     switch elements {
     | [] => ()
