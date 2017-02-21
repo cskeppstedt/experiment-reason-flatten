@@ -1,38 +1,23 @@
-/* =============================
- * Implementation variant #1
- * ============================= */
-type lists =
-  | List (list int)
-  | ListOfLists (list lists);
+/* ====================================
+ *  Type definition and implementation
+ * ==================================== */
+type nested_list =
+  | Item int
+  | Nested (list nested_list);
 
 let rec flatten input =>
-  switch input {
-  | List xs => xs
-  | ListOfLists [head, ...rest] =>
-    List.fold_left (fun accumulator element => accumulator @ flatten element) (flatten head) rest
-  | ListOfLists _ => []
-  };
-
-/* =============================
- * Implementation variant #2
- * ============================= */
-type lists2 =
-  | Item int
-  | Nested (list lists2);
-
-let rec flatten2 input =>
   switch input {
   | [] => []
   | [head, ...rest] =>
     switch head {
-    | Item n => [n, ...flatten2 rest]
-    | Nested ns => flatten2 ns @ flatten2 rest
+    | Item n => [n, ...flatten rest]
+    | Nested ns => flatten ns @ flatten rest
     }
   };
 
-/* =============================
- * Utility functions
- * ============================= */
+/* ====================================
+ *  Utility functions to print lists
+ * ==================================== */
 let rec print_content content =>
   switch content {
   | [] => ()
@@ -48,13 +33,9 @@ let rec print_list lst => {
   print_endline "]"
 };
 
-/* =============================
- * Run examples
- * ============================= */
-let flatten_input = ListOfLists [List [1, 2], List [3], ListOfLists [List [4], List [5]]];
+/* ====================================
+ *  Create input and run example
+ * ==================================== */
+let flatten_input = [Item 1, Item 2, Nested [Item 3, Item 4], Nested [Nested [Item 5]]];
 
-print_list (flatten flatten_input);
-
-let flatten_input2 = [Item 1, Item 2, Nested [Item 3, Item 4], Nested [Nested [Item 5]]];
-
-print_list (flatten2 flatten_input2);
+print_list (flatten flatten_input); /* outputs [ 1 2 3 4 5 ] */
