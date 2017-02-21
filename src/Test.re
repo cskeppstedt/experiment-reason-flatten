@@ -6,6 +6,7 @@ let rec flatten input =>
   switch input {
   | List xs => xs
   | ListOfLists [head, ...rest] => List.fold_left (fun a b => a @ flatten b) (flatten head) rest
+  | ListOfLists _ => []
   };
 
 let rec print_list lst =>
