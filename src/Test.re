@@ -5,7 +5,8 @@ type lists =
 let rec flatten input =>
   switch input {
   | List xs => xs
-  | ListOfLists [head, ...rest] => List.fold_left (fun a b => a @ flatten b) (flatten head) rest
+  | ListOfLists [head, ...rest] =>
+    List.fold_left (fun accumulator element => accumulator @ flatten element) (flatten head) rest
   | ListOfLists _ => []
   };
 
