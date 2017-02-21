@@ -11,7 +11,8 @@ from that repo except [the implementation](src/Test.re).
   data constructor type `lists` to deal with this.
 - I couldn't find anything that prints Lists, so I also had to add that.
 - Made two variants on the implementation, the second one is a bit cleaner than
-  the first one.
+  the first one. The first one was removed in [a recent
+  commit](https://github.com/cskeppstedt/experiment-reason-flatten/commit/275a34e547c86ad420e9ec6e10e9c90333022f8e).
 
 ## Usage
 
