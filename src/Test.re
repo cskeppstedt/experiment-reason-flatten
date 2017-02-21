@@ -10,14 +10,20 @@ let rec flatten input =>
   | ListOfLists _ => []
   };
 
-let rec print_list lst =>
-  switch lst {
+let rec print_content content =>
+  switch content {
   | [] => ()
-  | [e, ...l] =>
-    print_int e;
+  | [head, ...rest] =>
+    print_int head;
     print_string " ";
-    print_list l
+    print_content rest
   };
+
+let rec print_list lst => {
+  print_string "[ ";
+  print_content lst;
+  print_endline "]";
+};
 
 let flatten_input = ListOfLists [List [1, 2], List [3], ListOfLists [List [4], List [5]]];
 
