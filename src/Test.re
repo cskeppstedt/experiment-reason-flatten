@@ -36,6 +36,6 @@ let rec print_list lst => {
 /* ====================================
  *  Create input and run example
  * ==================================== */
-let flatten_input = [Item 1, Item 2, Nested [Item 3, Item 4], Nested [Nested [Item 5]]];
+let flatten_input = [Nested [Item 1, Item 2, Nested [Item 3]], Item 4]; /* [ [ 1, 2, [ 3 ] ], 4 ] */
 
-print_list (flatten flatten_input); /* outputs [ 1 2 3 4 5 ] */
+print_list (flatten flatten_input); /* outputs [ 1 2 3 4 ] */
